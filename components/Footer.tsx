@@ -25,7 +25,9 @@ export default function Footer() {
           </li>
           <li>
             <Link
-              href="#"
+              href="https://github.com/seunajetomobi"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-xs uppercase tracking-wider text-ink-faint dark:text-dark-ink-faint hover:text-accent dark:hover:text-dark-accent transition-colors duration-200"
             >
               GitHub
