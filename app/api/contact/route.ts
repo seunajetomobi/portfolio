@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
 interface ContactFormData {
   fullName: string;
@@ -8,9 +9,7 @@ interface ContactFormData {
 
 /**
  * POST /api/contact
- * Handles contact form submissions
- * 
- * Future: Integrate with Resend, SendGrid, or Nodemailer for email delivery
+ * Handles contact form submissions and sends emails via Gmail SMTP
  */
 export async function POST(request: NextRequest) {
   try {
@@ -41,23 +40,36 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Send email here using your preferred service
-    // Example with Resend:
-    // const data = await resend.emails.send({
-    //   from: 'Portfolio <onboarding@resend.dev>',
-    //   to: 'seunjetomobi@gmail.com',
-    //   subject: `New contact form submission from ${body.fullName}`,
-    //   html: `
-    //     <h2>New Contact Form Submission</h2>
-    //     <p><strong>From:</strong> ${body.fullName}</p>
-    //     <p><strong>Email:</strong> ${body.email}</p>
-    //     <p><strong>Message:</strong></p>
-    //     <p>${body.message.replace(/\n/g, '<br>')}</p>
-    //   `,
-    //   replyTo: body.email,
-    // });
+    // Create transporter for Gmail
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_EMAIL,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+    });
 
-    console.log('Contact form submission:', body);
+    // Email to you (portfolio owner)
+    const mailOptions = {
+      from: process.env.GMAIL_EMAIL,
+      to: process.env.GMAIL_EMAIL,
+      subject: `New Portfolio Contact: ${body.fullName}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>From:</strong> ${body.fullName}</p>
+        <p><strong>Email:</strong> ${body.email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${body.message.replace(/\n/g, '<br>')}</p>
+        <hr>
+        <p><em>This is an automated message from your portfolio contact form.</em></p>
+      `,
+      replyTo: body.email,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
+    console.log('Contact form submission sent:', body);
 
     return NextResponse.json(
       { 
