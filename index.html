@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-9" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.0" />
+  <title>Portfolio — IT Support Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0e0e0d;
+      --ink-light: #5a5a56;
+      --ink-faint: #9a9994;
+      --paper: #f5f3ef;
+      --paper-warm: #ede9e2;
+      --accent: #2a5c45;
+      --accent-pale: #dceee6;
+      --rule: rgba(14,14,13,0.12);
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 4rem;
+      background: rgba(245,243,239,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 4rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 5.5vw, 5.2rem);
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 0.2em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--ink-light);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-top: 1.5rem;
+      max-width: 38ch;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-cta {
+      margin-top: 3rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid var(--ink);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1.5px solid var(--rule);
+      transition: border-color 0.25s, color 0.25s;
+    }
+
+    .btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+    /* ── HERO RIGHT (photo) ── */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--paper-warm);
+    }
+
+    .photo-frame {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* SVG placeholder shown if no photo */
+    .photo-svg-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      gap: 1rem;
+      color: var(--ink-faint);
+    }
+
+    .photo-upload-hint {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--ink-faint);
+    }
+
+    .avatar-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--paper-warm);
+      border: 2px dashed var(--ink-faint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .corner-label {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      writing-mode: vertical-rl;
+    }
+
+    /* ── ABOUT STRIP ── */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid var(--rule);
+    }
+
+    .stat-cell {
+      padding: 3rem 4rem;
+      border-right: 1px solid var(--rule);
+    }
+
+    .stat-cell:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 3.2rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-top: 0.5rem;
+    }
+
+    /* ── SERVICES ── */
+    .services {
+      padding: 6rem 4rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+    }
+
+    .section-index {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    .service-card {
+      padding: 2.5rem 2.5rem;
+      border: 1px solid var(--rule);
+      border-right: none;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .service-card:last-child { border-right: 1px solid var(--rule); }
+    .service-card:hover { background: var(--accent-pale); }
+
+    .service-num {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-name {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── SKILLS ── */
+    .skills-section {
+      padding: 6rem 4rem;
+      border-top: 1px solid var(--rule);
+      background: var(--paper-warm);
+    }
+
+    .skills-inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .skills-intro p {
+      font-size: 0.92rem;
+      color: var(--ink-light);
+      line-height: 1.75;
+      letter-spacing: 0.015em;
+      margin-top: 1.5rem;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .skill-name {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      min-width: 160px;
+      font-weight: 400;
+    }
+
+    .skill-bar-bg {
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+      position: relative;
+    }
+
+    .skill-bar-fill {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      height: 3px;
+      background: var(--ink);
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .skill-bar-fill.animate { transform: scaleX(1); }
+
+    .skill-pct {
+      font-size: 0.75rem;
+      color: var(--ink-faint);
+      min-width: 2.5rem;
+      text-align: right;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 7rem 4rem;
+      border-top: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-left p {
+      font-size: 0.95rem;
+      color: var(--ink-light);
+      line-height: 1.75;
+      letter-spacing: 0.015em;
+    }
+
+    .contact-details {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .contact-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .contact-val {
+      font-size: 0.95rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    .contact-val:hover { color: var(--accent); }
+
+    .contact-right form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .field-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .field-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .field-input {
+      border: none;
+      border-bottom: 1px solid var(--rule);
+      background: transparent;
+      padding: 0.7rem 0;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field-input:focus { border-bottom-color: var(--ink); }
+
+    textarea.field-input {
+      resize: none;
+      height: 90px;
+      line-height: 1.6;
+    }
+
+    .form-submit {
+      align-self: flex-start;
+      padding: 0.85rem 2.5rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--ink);
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+
+    .form-submit:hover { background: var(--accent); border-color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── ENTRANCE ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .fade-up:nth-child(1) { animation-delay: 0.1s; }
+    .fade-up:nth-child(2) { animation-delay: 0.22s; }
+    .fade-up:nth-child(3) { animation-delay: 0.34s; }
+    .fade-up:nth-child(4) { animation-delay: 0.46s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: none; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 4rem 2rem; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-right { height: 60vw; min-height: 280px; }
+      .about-strip { grid-template-columns: 1fr 1fr; }
+      .stat-cell:last-child { border-right: 1px solid var(--rule); }
+      .services { padding: 4rem 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { border-right: 1px solid var(--rule); }
+      .service-card:last-child { border-right: 1px solid var(--rule); }
+      .skills-section { padding: 4rem 2rem; }
+      .skills-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-section { padding: 4rem 2rem; grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Seun Ajetomobi</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow fade-up">IT Support Specialist</p>
+      <h1 class="fade-up">
+        Keeping <em>systems</em><br>
+        running smoothly
+      </h1>
+      <p class="hero-sub fade-up">
+        Dedicated to solving technical challenges, empowering end users,
+        and building reliable infrastructure — one ticket at a time.
+      </p>
+      <div class="hero-cta fade-up">
+        <a class="btn-primary" href="#contact">Get in touch &rarr;</a>
+        <a class="btn-ghost" href="#services">My services</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- Replace the block below with an <img> tag pointing to your photo -->
+      <div class="photo-svg-placeholder">
+        <div class="avatar-circle">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="28" cy="20" r="10" stroke="#9a9994" stroke-width="1.5"/>
+            <path d="M8 50 C8 36 48 36 48 50" stroke="#9a9994" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <p class="photo-upload-hint">Your photo here<br><span style="font-size:0.62rem; opacity:0.6;">Replace placeholder in HTML</span></p>
+      </div>
+      <span class="corner-label">Available for hire</span>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="about-strip">
+    <div class="stat-cell reveal">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-cell reveal">
+      <div class="stat-num">300+</div>
+      <div class="stat-label">Tickets Resolved</div>
+    </div>
+    <div class="stat-cell reveal">
+      <div class="stat-num">99%</div>
+      <div class="stat-label">SLA Compliance</div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header reveal">
+      <h2 class="section-title">What I do</h2>
+      <span class="section-index">01 &mdash; Services</span>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <p class="service-num">01</p>
+        <h3 class="service-name">Hardware &amp; Software Support</h3>
+        <p class="service-desc">Diagnosing and resolving hardware faults, OS installations, software configuration, and driver issues across Windows, macOS, and Linux environments.</p>
+      </div>
+      <div class="service-card reveal">
+        <p class="service-num">02</p>
+        <h3 class="service-name">Network Troubleshooting</h3>
+        <p class="service-desc">LAN/WAN diagnostics, Wi-Fi optimisation, VPN configuration, and connectivity issue resolution to keep your team online and productive.</p>
+      </div>
+      <div class="service-card reveal">
+        <p class="service-num">03</p>
+        <h3 class="service-name">Endpoint Security</h3>
+        <p class="service-desc">Deploying and managing antivirus, patch management, and access control policies to protect endpoints from modern security threats.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills-section" id="skills">
+    <div class="skills-inner">
+      <div class="skills-intro reveal">
+        <div class="section-header" style="flex-direction:column; align-items:flex-start; gap:0.5rem; margin-bottom:0;">
+          <span class="section-index">02 &mdash; Skills</span>
+          <h2 class="section-title">Core proficiencies</h2>
+        </div>
+        <p>A broad technical skillset honed through hands-on support roles, continuous learning, and industry certifications.</p>
+      </div>
+      <div class="skills-list">
+        <div class="skill-row reveal" data-width="0.92">
+          <span class="skill-name">Windows & Active Directory</span>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:92%"></div></div>
+          <span class="skill-pct">92%</span>
+        </div>
+        <div class="skill-row reveal" data-width="0.85">
+          <span class="skill-name">Network Administration</span>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div>
+          <span class="skill-pct">85%</span>
+        </div>
+        <div class="skill-row reveal" data-width="0.78">
+          <span class="skill-name">Cloud (Azure / M365)</span>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:78%"></div></div>
+          <span class="skill-pct">78%</span>
+        </div>
+        <div class="skill-row reveal" data-width="0.88">
+          <span class="skill-name">Help Desk & ITSM</span>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div>
+          <span class="skill-pct">88%</span>
+        </div>
+        <div class="skill-row reveal" data-width="0.72">
+          <span class="skill-name">Scripting (PowerShell)</span>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:72%"></div></div>
+          <span class="skill-pct">72%</span>
+        </div>
+        <div class="skill-row reveal" data-width="0.80">
+          <span class="skill-name">Cybersecurity Basics</span>
+          <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div>
+          <span class="skill-pct">80%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-left reveal">
+      <h2>Let's work <em style="font-family:var(--serif); font-style:italic; color:var(--accent);">together</em></h2>
+      <p>Whether you need ongoing IT support, a one-time fix, or a consultation on your infrastructure — I'd love to hear from you.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <a class="contact-val" href="mailto:seunj.com">seunjetomobi@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Location</span>
+          <span class="contact-val">Stockholm, Sweden</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Availability</span>
+          <span class="contact-val" style="color:var(--accent);">&#9679; Open to opportunities</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-right reveal">
+      <form onsubmit="return false;">
+        <div class="field-wrap">
+          <label class="field-label" for="name">Full name</label>
+          <input class="field-input" id="name" type="text" placeholder="Jane Smith" />
+        </div>
+        <div class="field-wrap">
+          <label class="field-label" for="email">Email address</label>
+          <input class="field-input" id="email" type="email" placeholder="jane@company.com" />
+        </div>
+        <div class="field-wrap">
+          <label class="field-label" for="msg">Message</label>
+          <textarea class="field-input" id="msg" placeholder="Tell me what you need help with…"></textarea>
+        </div>
+        <button class="form-submit" type="submit">Send message &rarr;</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-copy">&copy; 2025 Seun Ajetomobi &mdash; IT Support Specialist</p>
+    <ul class="footer-links">
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">CV / Résumé</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const bars = document.querySelectorAll('.skill-bar-fill');
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          if (e.target.closest('.skill-row')) {
+            const fill = e.target.closest('.skill-row')?.querySelector('.skill-bar-fill');
+            if (fill) fill.classList.add('animate');
+          }
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach(el => io.observe(el));
+
+    // trigger skill bars that are already in view
+    setTimeout(() => {
+      bars.forEach(b => {
+        const rect = b.getBoundingClientRect();
+        if (rect.top < window.innerHeight) b.classList.add('animate');
+      });
+    }, 300);
+  </script>
+
+</body>
+</html>
