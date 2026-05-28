@@ -16,7 +16,7 @@
     @apply bg-accent dark:bg-dark-accent text-paper dark:text-dark-paper;
   }
 
-  /* Dark mode transitions for smooth color changes */
+  /* Smooth transitions */
   * {
     @apply transition-colors duration-300;
   }
@@ -25,16 +25,16 @@
 @layer components {
   /* Button styles */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-[0.85rem] bg-gradient-to-r from-accent to-accent-tertiary dark:from-dark-accent dark:to-dark-accent-tertiary text-white font-sans text-sm font-medium uppercase tracking-wider border-[1.5px] border-transparent transition-all duration-300 rounded-lg hover:shadow-lg hover:scale-105 active:scale-95;
+    @apply inline-flex items-center gap-2 px-8 py-[0.85rem] bg-gradient-to-r from-accent to-accent-tertiary dark:from-dark-accent dark:to-dark-accent-tertiary text-white font-sans text-sm font-extralight uppercase tracking-wider border-[1.5px] border-transparent transition-all duration-300 rounded-lg hover:shadow-lg hover:scale-105 active:scale-95;
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 px-8 py-[0.85rem] bg-transparent text-ink dark:text-dark-ink font-sans text-sm font-normal uppercase tracking-wider border-[1.5px] border-rule dark:border-dark-rule transition-all duration-300 hover:border-accent dark:hover:border-dark-accent hover:text-accent dark:hover:text-dark-accent rounded-lg;
+    @apply inline-flex items-center gap-2 px-8 py-[0.85rem] bg-transparent text-ink dark:text-dark-ink font-sans text-sm font-light uppercase tracking-wider border-[1.5px] border-rule dark:border-dark-rule transition-all duration-300 hover:border-accent dark:hover:border-dark-accent hover:text-accent dark:hover:text-dark-accent rounded-lg;
   }
 
   /* Form inputs */
   .form-input {
-    @apply w-full border-b-2 border-rule dark:border-dark-rule bg-transparent dark:bg-transparent px-0 py-[0.7rem] font-sans text-base text-ink dark:text-dark-ink outline-none transition-all duration-200 placeholder:text-ink-faint dark:placeholder:text-dark-ink-faint focus:border-accent dark:focus:border-dark-accent focus:shadow-sm;
+    @apply w-full border-b-2 border-rule dark:border-dark-rule bg-transparent dark:bg-transparent px-0 py-[0.7rem] font-sans text-base font-light text-ink dark:text-dark-ink outline-none transition-all duration-200 placeholder:text-ink-faint dark:placeholder:text-dark-ink-faint focus:border-accent dark:focus:border-dark-accent focus:shadow-sm;
   }
 
   .form-input:disabled {

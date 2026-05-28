@@ -38,14 +38,14 @@ export default function Hero() {
         animate="visible"
       >
         <motion.p
-          className="text-xs font-medium uppercase tracking-widest text-accent dark:text-dark-accent mb-6"
+          className="text-xs font-light uppercase tracking-widest text-accent dark:text-dark-accent mb-6"
           variants={itemVariants}
         >
           IT Support Specialist
         </motion.p>
 
         <motion.h1
-          className="font-serif text-4xl sm:text-5xl md:text-6xl font-light leading-tight tracking-tight text-ink dark:text-dark-ink mb-2"
+          className="font-serif text-4xl sm:text-5xl md:text-6xl font-extralight leading-tight tracking-tight text-ink dark:text-dark-ink mb-2"
           variants={itemVariants}
         >
           Keeping <em className="font-serif italic text-accent dark:text-dark-accent not-italic">systems</em>

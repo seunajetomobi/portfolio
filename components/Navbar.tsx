@@ -46,7 +46,7 @@ export default function Navbar() {
           <li>
             <Link
               href="#services"
-              className="text-xs font-normal uppercase tracking-wider text-ink-light dark:text-dark-ink-light transition-colors duration-200 hover:text-accent dark:hover:text-dark-accent"
+              className="text-xs font-light uppercase tracking-wider text-ink-light dark:text-dark-ink-light transition-colors duration-200 hover:text-accent dark:hover:text-dark-accent"
             >
               Services
             </Link>

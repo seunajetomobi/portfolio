@@ -1,16 +1,25 @@
 'use client';
 
+import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useForm, ValidationError } from '@formspree/react';
 
 export default function Contact() {
   const [state, handleSubmit] = useForm('xgoqdnwq');
+  const formRef = useRef<HTMLFormElement>(null);
 
   const { ref, inView } = useInView({
     threshold: 0.2,
     triggerOnce: true,
   });
+
+  // Clear form on successful submission
+  useEffect(() => {
+    if (state.succeeded && formRef.current) {
+      formRef.current.reset();
+    }
+  }, [state.succeeded]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -46,7 +55,7 @@ export default function Contact() {
         >
           {/* Left side */}
           <motion.div variants={itemVariants}>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-ink dark:text-dark-ink mb-6 leading-snug">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extralight tracking-tight text-ink dark:text-dark-ink mb-6 leading-snug">
               Let's work <em className="font-serif italic text-accent dark:text-dark-accent not-italic">together</em>
             </h2>
             <p className="text-base text-ink-light dark:text-dark-ink-light leading-relaxed font-light mb-8">
@@ -84,7 +93,7 @@ export default function Contact() {
 
           {/* Right side - Form */}
           <motion.div variants={itemVariants}>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="fullName" className="text-xs uppercase tracking-wider text-ink-faint dark:text-dark-ink-faint block mb-2">
                   Full name
@@ -142,7 +151,7 @@ export default function Contact() {
 
               {state.succeeded && (
                 <motion.p
-                  className="text-sm text-accent dark:text-dark-accent font-medium"
+                  className="text-sm text-accent dark:text-dark-accent font-light"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >

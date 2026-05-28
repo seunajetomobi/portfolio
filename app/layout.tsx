@@ -5,13 +5,13 @@ import './globals.css';
 
 const serif = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['300', '400', '600'],
+  weight: ['200', '300', '400', '600'],
   variable: '--font-serif',
 });
 
 const sans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
+  weight: ['200', '300', '400', '500'],
   variable: '--font-sans',
 });
 
