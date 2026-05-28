@@ -9,15 +9,19 @@ function PostHogPageTracker() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Track page views
-    if (pathname) {
+    // Track page views only if PostHog is initialized
+    if (pathname && posthog && typeof posthog.capture === 'function') {
       let url = window.origin + pathname;
       if (searchParams.toString()) {
         url = url + `?${searchParams.toString()}`;
       }
-      posthog.capture('$pageview', {
-        $current_url: url,
-      });
+      try {
+        posthog.capture('$pageview', {
+          $current_url: url,
+        });
+      } catch (error) {
+        console.error('PostHog capture error:', error);
+      }
     }
   }, [pathname, searchParams]);
 
@@ -26,14 +30,20 @@ function PostHogPageTracker() {
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Initialize PostHog
-    posthog.init('phc_m2iqBdAM2tHcD8vU5muifH8cHmHj4uB9baYFkYTeuXxB', {
-      api_host: 'https://us.i.posthog.com',
-      person_profiles: 'identified_only',
-      loaded: (posthog) => {
-        if (process.env.NODE_ENV === 'development') posthog.debug();
-      },
-    });
+    try {
+      // Check if already initialized
+      if (posthog && typeof posthog.init === 'function') {
+        // Initialize PostHog only once
+        if (!posthog.__loaded) {
+          posthog.init('phc_m2iqBdAM2tHcD8vU5muifH8cHmHj4uB9baYFkYTeuXxB', {
+            api_host: 'https://us.i.posthog.com',
+            person_profiles: 'identified_only',
+          });
+        }
+      }
+    } catch (error) {
+      console.error('PostHog initialization error:', error);
+    }
   }, []);
 
   return (
