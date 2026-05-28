@@ -55,7 +55,7 @@ export default function Contact() {
         >
           {/* Left side */}
           <motion.div variants={itemVariants}>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extralight tracking-tight text-ink dark:text-dark-ink mb-6 leading-snug">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-ink dark:text-dark-ink mb-6 leading-snug">
               Let's work <em className="font-serif italic text-accent dark:text-dark-accent not-italic">together</em>
             </h2>
             <p className="text-base text-ink-light dark:text-dark-ink-light leading-relaxed font-light mb-8">

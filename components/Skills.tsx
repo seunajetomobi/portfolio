@@ -55,7 +55,7 @@ export default function Skills() {
             <span className="text-xs uppercase tracking-widest text-ink-faint dark:text-dark-ink-faint mb-4 block font-light">
               Skills
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extralight tracking-tight text-ink dark:text-dark-ink mb-6">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-ink dark:text-dark-ink mb-6">
               Core proficiencies
             </h2>
             <p className="text-base text-ink-light dark:text-dark-ink-light leading-relaxed font-light">

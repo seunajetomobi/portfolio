@@ -25,7 +25,7 @@
 @layer components {
   /* Button styles */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-[0.85rem] bg-gradient-to-r from-accent to-accent-tertiary dark:from-dark-accent dark:to-dark-accent-tertiary text-white font-sans text-sm font-extralight uppercase tracking-wider border-[1.5px] border-transparent transition-all duration-300 rounded-lg hover:shadow-lg hover:scale-105 active:scale-95;
+    @apply inline-flex items-center gap-2 px-8 py-[0.85rem] bg-gradient-to-r from-accent to-accent-tertiary dark:from-dark-accent dark:to-dark-accent-tertiary text-white font-sans text-sm font-light uppercase tracking-wider border-[1.5px] border-transparent transition-all duration-300 rounded-lg hover:shadow-lg hover:scale-105 active:scale-95;
   }
 
   .btn-ghost {

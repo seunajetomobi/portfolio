@@ -45,7 +45,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.h1
-          className="font-serif text-4xl sm:text-5xl md:text-6xl font-extralight leading-tight tracking-tight text-ink dark:text-dark-ink mb-2"
+          className="font-serif text-4xl sm:text-5xl md:text-6xl font-light leading-tight tracking-tight text-ink dark:text-dark-ink mb-2"
           variants={itemVariants}
         >
           Keeping <em className="font-serif italic text-accent dark:text-dark-accent not-italic">systems</em>
