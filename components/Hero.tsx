@@ -74,7 +74,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Right side - Photo placeholder */}
-      <div className="relative bg-paper-warm dark:bg-dark-paper-warm h-56 md:h-auto flex flex-col items-center justify-center md:min-h-full">
+      <div className="relative h-56 md:h-auto flex flex-col items-center justify-center md:min-h-full">
         <div className="flex flex-col items-center justify-center gap-3">
           {/* Avatar image */}
           <div className="w-56 h-56 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-accent dark:border-dark-accent flex-shrink-0 shadow-lg">
@@ -84,7 +84,10 @@ export default function Hero() {
               width={320}
               height={320}
               priority
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+              style={{
+                filter: 'grayscale(100%) contrast(1.2) brightness(0.95)',
+              }}
             />
           </div>
         </div>
