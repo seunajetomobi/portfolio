@@ -1,11 +1,14 @@
 'use client';
 
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { PostHogProvider } from '@/app/providers/PostHogProvider';
 
 export function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider>
-      {children}
-    </ThemeProvider>
+    <PostHogProvider>
+      <ThemeProvider>
+        {children}
+      </ThemeProvider>
+    </PostHogProvider>
   );
 }

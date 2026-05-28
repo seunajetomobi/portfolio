@@ -1,17 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useForm, ValidationError } from '@formspree/react';
 
 export default function Contact() {
-  const [formState, setFormState] = useState({
-    fullName: '',
-    email: '',
-    message: '',
-  });
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [state, handleSubmit] = useForm('xgoqdnwq');
 
   const { ref, inView } = useInView({
     threshold: 0.2,
@@ -38,37 +32,6 @@ export default function Contact() {
         ease: 'easeOut',
       },
     },
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormState((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formState),
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-        setFormState({ fullName: '', email: '', message: '' });
-        setTimeout(() => setSubmitted(false), 5000);
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -129,13 +92,12 @@ export default function Contact() {
                 <input
                   type="text"
                   id="fullName"
-                  name="fullName"
+                  name="name"
                   placeholder="Jane Smith"
-                  value={formState.fullName}
-                  onChange={handleChange}
                   required
                   className="form-input"
                 />
+                <ValidationError field="name" errors={state.errors} />
               </div>
 
               <div>
@@ -147,11 +109,10 @@ export default function Contact() {
                   id="email"
                   name="email"
                   placeholder="jane@company.com"
-                  value={formState.email}
-                  onChange={handleChange}
                   required
                   className="form-input"
                 />
+                <ValidationError field="email" errors={state.errors} />
               </div>
 
               <div>
@@ -162,25 +123,24 @@ export default function Contact() {
                   id="message"
                   name="message"
                   placeholder="Tell me what you need help with…"
-                  value={formState.message}
-                  onChange={handleChange}
                   required
                   rows={5}
                   className="form-input resize-none"
                 />
+                <ValidationError field="message" errors={state.errors} />
               </div>
 
               <div>
                 <button
                   type="submit"
-                  disabled={loading}
+                  disabled={state.submitting}
                   className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {loading ? 'Sending...' : 'Send message →'}
+                  {state.submitting ? 'Sending...' : 'Send message →'}
                 </button>
               </div>
 
-              {submitted && (
+              {state.succeeded && (
                 <motion.p
                   className="text-sm text-accent dark:text-dark-accent font-medium"
                   initial={{ opacity: 0 }}
